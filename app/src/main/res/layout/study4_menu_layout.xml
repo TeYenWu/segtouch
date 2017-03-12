@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menuRoot">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/startButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/finger"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/startButton"
+        android:layout_toEndOf="@+id/startButton" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/root"
+        android:layout_alignBottom="@+id/startButton"
+        android:layout_toRightOf="@+id/startButton"
+        android:layout_toEndOf="@+id/startButton">
+
+        <com.github.pavlospt.CircleView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cv_titleText=""
+            app:cv_subtitleText=""
+            app:cv_strokeColorValue="#000000"
+            app:cv_fillColor="#000000"
+            app:cv_fillRadius="1.1"
+            app:cv_strokeWidthSize="20"
+            android:layout_marginLeft="20dp" />
+        <com.github.pavlospt.CircleView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cv_titleText=""
+            app:cv_subtitleText=""
+            app:cv_strokeColorValue="#000000"
+            app:cv_fillColor="#000000"
+            app:cv_fillRadius="1.1"
+            app:cv_strokeWidthSize="20"
+            android:layout_marginLeft="20dp" />
+        <com.github.pavlospt.CircleView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cv_titleText=""
+            app:cv_subtitleText=""
+            app:cv_strokeColorValue="#000000"
+            app:cv_fillColor="#000000"
+            app:cv_fillRadius="1.1"
+            app:cv_strokeWidthSize="20"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/root1"
+        android:layout_below="@+id/startButton"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3">
+
+        <com.github.pavlospt.CircleView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cv_titleText=""
+            app:cv_subtitleText=""
+            app:cv_strokeColorValue="#000000"
+            app:cv_fillColor="#000000"
+            app:cv_fillRadius="1.1"
+            app:cv_strokeWidthSize="20"
+            android:layout_marginLeft="20dp" />
+        <com.github.pavlospt.CircleView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cv_titleText=""
+            app:cv_subtitleText=""
+            app:cv_strokeColorValue="#000000"
+            app:cv_fillColor="#000000"
+            app:cv_fillRadius="1.1"
+            app:cv_strokeWidthSize="20"
+            android:layout_marginLeft="20dp" />
+        <com.github.pavlospt.CircleView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cv_titleText=""
+            app:cv_subtitleText=""
+            app:cv_strokeColorValue="#000000"
+            app:cv_fillColor="#000000"
+            app:cv_fillRadius="1.1"
+            app:cv_strokeWidthSize="20"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+</RelativeLayout>
