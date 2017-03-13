@@ -41,16 +41,18 @@ import rx.schedulers.Schedulers;
 public class Study4Activity extends AppCompatActivity {
 
     class Target{
-        public Target(int repetition, int commandType, int gesture)
+        public Target(int repetition, int startCommandType,int  endCommandType, int gesture)
         {
             this.rep = repetition;
-            this.commandType = commandType;
+            this.commandType = endCommandType;
+            this.startCommandType = startCommandType;
             this.gesture = gesture;
 
         }
         int rep;
         int gesture;
         int commandType;
+        int startCommandType;
         Long startTimeLong;
         Long endTimeLong;
     }
@@ -226,6 +228,8 @@ public class Study4Activity extends AppCompatActivity {
         dragImageView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (currentFingerIndex != typesToFingerIndex[currentTarget.startCommandType])
+                        return false;
                     // Construct draggable shadow for view
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                     // Start the drag of the shadow
@@ -303,9 +307,12 @@ public class Study4Activity extends AppCompatActivity {
         {
             for(int commandType = 0; commandType < nCommandType; commandType++)
             {
+                Random random = new Random();
+                int start = random.nextInt(2);
                 for(int gesture = 0; gesture < nGestures; gesture++)
                 {
-                    Target target = new Target(rep, commandType, gesture);
+
+                    Target target = new Target(rep, (commandType + start + 1) % 3,commandType, gesture);
                     targets.add(target);
                 }
             }
@@ -379,11 +386,19 @@ public class Study4Activity extends AppCompatActivity {
                 dropImageView.setBackground(ContextCompat.getDrawable(this,R.drawable.study4_image_border2));
             else if (currentTarget.commandType ==2)
                 dropImageView.setBackground(ContextCompat.getDrawable(this,R.drawable.study4_image_border3));
+
+            if(currentTarget.startCommandType == 0)
+                dragImageView.setBackground(ContextCompat.getDrawable(this,R.drawable.study4_image_border1));
+            else if (currentTarget.startCommandType == 1)
+                dragImageView.setBackground(ContextCompat.getDrawable(this,R.drawable.study4_image_border2));
+            else if (currentTarget.startCommandType ==2)
+                dragImageView.setBackground(ContextCompat.getDrawable(this,R.drawable.study4_image_border3));
+
             double x,y =0;
-            x =  50 * Math.cos(Math.toRadians((gesture - 4)*45))+ dragImageView.getPivotX();
-            y = 50 * Math.sin(Math.toRadians((gesture - 4)*45))+ dragImageView.getPivotY();
-            dropImageView.setPivotX((float)x );
-            dropImageView.setPivotY((float)y);
+            x =  500 * Math.cos(Math.toRadians((gesture - 4)*45))+ dragImageView.getX();
+            y = 500 * Math.sin(Math.toRadians((gesture - 4)*45)) + dragImageView.getY();
+            dropImageView.setX((float)x);
+            dropImageView.setY((float)y);
         }
 
     }
@@ -523,9 +538,11 @@ public class Study4Activity extends AppCompatActivity {
 
         Long diff = currentTarget.endTimeLong - currentTarget.startTimeLong;
 
-        String result = String.valueOf(currentTarget.rep) + ',' + String.valueOf(currentTarget.commandType) + ',' + String.valueOf(currentTarget.gesture)
+        String result = String.valueOf(currentTarget.rep) + ',' + String.valueOf(typesToFingerIndex[currentTarget.commandType]) + ',' + String.valueOf(currentTarget.gesture)
                 +',' + String.valueOf(currentFingerIndex)
                 +',' + String.valueOf(index)
+                +',' + String.valueOf(currentFingerIndex == typesToFingerIndex[currentTarget.commandType])
+                +',' + String.valueOf(currentTarget.gesture == index)
                 +',' + String.valueOf(diff);
         Utils.writeFile(this, "results.csv", result + "\n");
         isStarted = false;
